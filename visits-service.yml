@@ -1,6 +1,8 @@
 server:
   port: 8084
 spring:
+  application:
+    name: visits-service
   datasource:
     url: jdbc:hsqldb:mem:ownersdb
     username: sa

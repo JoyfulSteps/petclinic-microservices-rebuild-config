@@ -1,6 +1,8 @@
 server:
   port: 8082
 spring:
+  application:
+    name: customers-service
   datasource:
     urL: jdbc:hsqldb:mem:customersdb
     username: sa

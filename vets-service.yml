@@ -2,6 +2,8 @@ server:
   port: 8083
 
 spring:
+  application:
+    name: vets-service
   datasource:
     url: jdbc:hsqldb:mem:vetsdb
     username: sa
