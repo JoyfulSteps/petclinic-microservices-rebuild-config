@@ -1,0 +1,15 @@
+server:
+  port: 8084
+spring:
+  datasource:
+    url: jdbc:hsqldb:mem:ownersdb
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
