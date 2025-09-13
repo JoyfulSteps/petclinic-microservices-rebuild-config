@@ -4,7 +4,7 @@ spring:
   application:
     name: customers-service
   datasource:
-    urL: jdbc:hsqldb:mem:customersdb
+    url: jdbc:hsqldb:mem:customersdb
     username: sa
     password:
   jpa:
