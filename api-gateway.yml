@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    #define routing rules
+    routes:
+      - id: customers-service
+        uri: lb:/customers-service
+        predicates:
+          - Path=/api/customer/**
+        filters:
+          - RewritePath=/api/customer/(?<segment>.*), /$\{segment}
+
+      - id: visits-service
+        uri: lb://visits-service
+        predicates:
+          - Path=/api/visit/**
+        filters:
+          - RewritePath=/api/visit/(?<segment>.*), /$\{segment}
+      
+      - id: vets-service
+        uri: lb://vets-service
+        predicates:
+          - Path=/api/vet/**
+        filters:
+          - RewritePath=/api/vet/(?<segment>.*), /$\{segment}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
