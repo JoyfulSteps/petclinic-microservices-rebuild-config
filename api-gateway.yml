@@ -5,32 +5,33 @@ spring:
   application:
     name: api-gateway
   cloud:
-    #define routing rules
-    routes:
-      - id: customers-service
-        uri: lb:/customers-service
-        predicates:
-          - Path=/api/customer/**
-        filters:
-          - RewritePath=/api/customer/(?<segment>.*), /$\{segment}
+    gateway:
+      #define routing rules
+      routes:
+        - id: customers-service
+          uri: lb://customers-service
+          predicates:
+            - Path=/api/customer/**
+          filters:
+            - RewritePath=/api/customer/(?<segment>.*), /$\{segment}
 
-      - id: visits-service
-        uri: lb://visits-service
-        predicates:
-          - Path=/api/visit/**
-        filters:
-          - RewritePath=/api/visit/(?<segment>.*), /$\{segment}
-          - name: CircuitBreaker
-            args:
-              name: visits-cb
-              fallbackUri: forward:/fallback/visits
-      
-      - id: vets-service
-        uri: lb://vets-service
-        predicates:
-          - Path=/api/vet/**
-        filters:
-          - RewritePath=/api/vet/(?<segment>.*), /$\{segment}
+        - id: visits-service
+          uri: lb://visits-service
+          predicates:
+            - Path=/api/visit/**
+          filters:
+            - RewritePath=/api/visit/(?<segment>.*), /$\{segment}
+            - name: CircuitBreaker
+              args:
+                name: visits-cb
+                fallbackUri: forward:/fallback/visits
+
+        - id: vets-service
+          uri: lb://vets-service
+          predicates:
+            - Path=/api/vet/**
+          filters:
+            - RewritePath=/api/vet/(?<segment>.*), /$\{segment}
 
 eureka:
   client:
@@ -47,13 +48,3 @@ resilience4j:
         wait-duration-in-open-state: 10s #wait before HALF_OPEN
         permitted-number-of-calls-in-half-open-state: 3 #3 test requests
         automatic-transition-from-open-to-half-open-enabled: true
-
-#enable actuator endpoints
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway
-  endpoint:
-    gateway:
-      enabled: true
