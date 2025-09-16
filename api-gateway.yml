@@ -21,11 +21,7 @@ spring:
             - Path=/api/visit/**
           filters:
             - RewritePath=/api/visit/(?<segment>.*), /$\{segment}
-            - name: CircuitBreaker
-              args:
-                name: visits-cb
-                fallbackUri: forward:/fallback/visits
-
+        
         - id: vets-service
           uri: lb://vets-service
           predicates:
@@ -38,13 +34,3 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-## Resilience4j configuration
-#resilience4j:
-#  circuitbreaker:
-#    instances:
-#      visits-cb:
-#        sliding-window-size: 10
-#        failure-rate-threshold: 50 #50% of last 10 request fail -> circuit
-#        wait-duration-in-open-state: 10s #wait before HALF_OPEN
-#        permitted-number-of-calls-in-half-open-state: 3 #3 test requests
-#        automatic-transition-from-open-to-half-open-enabled: true
