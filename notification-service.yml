@@ -1,12 +1,12 @@
 server:
-  port: 0 #random port
+  port: 0 # random port
 
 spring:
   application:
-    name: notification-service-name
+    name: notification-service
   kafka:
     consumer:
-      bootstrap-server: localhost:9092
+      bootstrap-servers: localhost:19092
       group-id: notification-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
