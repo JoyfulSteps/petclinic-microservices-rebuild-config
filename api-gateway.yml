@@ -21,10 +21,10 @@ spring:
             - Path=/api/visit/**
           filters:
             - RewritePath=/api/visit/(?<segment>.*), /$\{segment}
-            - name: CircuitBreaker
-              args:
-                name: visits-cb
-                fallbackUri: forward:/fallback/visits
+            # - name: CircuitBreaker
+            #   args:
+            #     name: visits-cb
+            #     fallbackUri: forward:/fallback/visits
 
         - id: vets-service
           uri: lb://vets-service
