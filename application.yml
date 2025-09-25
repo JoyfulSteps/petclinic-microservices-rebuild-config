@@ -10,7 +10,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issure-uri: http://localhost:18180/realms/petclinic
+          issuer-uri: http://localhost:18180/realms/petclinic
 
 eureka:
   client:
