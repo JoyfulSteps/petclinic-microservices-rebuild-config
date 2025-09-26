@@ -36,7 +36,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:18761/eureka/
+      defaultZone: http://host.docker.internal:18761/eureka/
 
 # Resilience4j configuration
 resilience4j:

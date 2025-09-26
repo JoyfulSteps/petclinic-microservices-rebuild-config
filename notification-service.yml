@@ -6,7 +6,7 @@ spring:
     name: notification-service
   kafka:
     consumer:
-      bootstrap-servers: localhost:19092
+      bootstrap-servers: host.docker.internal:19092
       group-id: notification-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -15,4 +15,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:18761/eureka/
+      defaultZone: http://host.docker.internal:18761/eureka/
