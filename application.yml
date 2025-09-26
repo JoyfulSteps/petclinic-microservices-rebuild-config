@@ -5,17 +5,17 @@ spring:
   application:
     name: not-set # default app name
   zipkin:
-    base-url: http://host.docker.internal:9411/
+    base-url: http://localhost:9411/
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://host.docker.internal:18180/realms/petclinic
+          issuer-uri: http://localhost:18180/realms/petclinic
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://host.docker.internal:18761/eureka/
+      defaultZone: http://localhost:18761/eureka/
     instance:
       preferIpAddress: true
 
